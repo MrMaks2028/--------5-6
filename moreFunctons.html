@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More about functions / Больше о функциях</title>
+</head>
+<body>
+    <script>
+
+        // console.log(power(5, 3));
+        // console.log(power(9));
+
+        // "Перегрузка" функции
+        /*console.log(calculateCalories('man', 180, 2));
+        console.log(calculateCalories('man', 180));
+        console.log(calculateCalories('women', 180));
+
+        console.log('-------------------');
+
+        console.log(calcCal('man', [180, 176, 155]));
+        console.log(calcCal(['man', 'woman', 'women'], 166));
+        console.log(calcCal(['man', 'women', 'women'], [180, 176, 155]));*/
+
+        //Объект arguments
+        //console.log(sum(12, 15, 5.5, 3, 15.5));
+
+        console.log(num);
+
+        if(true){
+            var num = 7; // глобальная переменная
+        }
+        console.log('Объявление');
+
+        console.log(num);
+
+        //console.log(num); - будет ошибка!
+
+        let num = 7; // локальная переменная
+
+        console.log(num);
+
+
+        function foo(){
+            var hi = 'Hello world!' // локальная переменная в функции
+        }
+
+        function sum(){
+            var result = 0;
+            for(var i = 0; i < arguments.length; i++)
+                if(typeof arguments[i] == 'number')
+                    result += arguments[i];
+                return result;
+        }
+
+        function calcCal(gender, height){
+            var result = 0;
+            if(typeof gender == 'string'){
+                if(typeof height == 'number'){
+                    result = gender == 'man' ? (height - 100) * 20 : (height - 105) * 19;
+                }
+                else if(Array.isArray(height)){
+                    for(var el of height){
+                        result += gender == 'man' ? (el - 100) * 20 : (el - 105) * 19;
+                    }
+                }
+            }
+            else if(Array.isArray(gender)){
+                if(typeof height == 'number'){
+                    for(var el of gender){
+                        result += el == 'man' ? (height - 100) * 20 : (height - 105) * 19;
+                    }
+                }
+                else if(Array.isArray(height)){
+                    for(var i in gender){
+                        result += gender[i] == 'man' ? (height[i] - 100) * 20 : (height[i] - 105) * 19;
+                    }
+                }
+            }
+            return result;
+        }
+        
+        function calculateCalories(gender, height, persons){
+            var result = gender == 'man' ? (height - 100) * 20 : (height - 105) * 19;
+            if(typeof persons == 'number')
+                result *= persons;
+            return result;
+        } 
+
+        function power(left, right = 2) {
+            return left ** right;
+        }
+    </script>
+</body>
+</html>
